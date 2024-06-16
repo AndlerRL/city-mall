@@ -1,0 +1,9 @@
+{
+  "name": "cm-supabase",
+  "version": "0.0.1",
+  "description": "A simple example of using Supabase with Cloudflare Workers",
+  "types": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

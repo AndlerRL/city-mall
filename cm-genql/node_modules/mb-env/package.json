@@ -1,0 +1,16 @@
+{
+  "name": "cm-env",
+  "version": "0.0.1",
+  "private": true,
+  "description": "city-mall environment data",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {},
+  "author": "bitcash.org",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "tsconfig": "workspace:*",
+    "typescript": "^5.1.3"
+  }
+}

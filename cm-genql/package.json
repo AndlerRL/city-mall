@@ -1,0 +1,30 @@
+{
+  "name": "cm-genql",
+  "version": "0.0.1",
+  "private": true,
+  "description": "city-mall genql",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "gen": "pnpm run gen-test",
+    "gen-prod": "./scripts/prod.sh",
+    "gen-test": "./scripts/test.sh",
+    "gen-local": "./scripts/local.sh",
+    "gen-inline": "genql --endpoint https://yhhpyexsnfepayxmupcl.supabase.co/graphql/v1 --output ./generated -H 'Content-Type: application/json' -H 'apiKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InloaHB5ZXhzbmZlcGF5eG11cGNsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTg0NzUzMzUsImV4cCI6MjAzNDA1MTMzNX0.I17IApYSqnxZrriGUNt8Iz_DTW4gMxST15ymWD2SsTc'",
+    "lint": "eslint \"src/**/*.ts*\""
+  },
+  "author": "andler",
+  "license": "ISC",
+  "dependencies": {
+    "@genql/runtime": "^2.10.0",
+    "graphql": "^16.6.0",
+    "graphql-ws": "^5.14.2",
+    "mb-env": "workspace:*"
+  },
+  "devDependencies": {
+    "@genql/cli": "^6.0.0",
+    "genql": "^2.0.1",
+    "typescript": "^5.1.3",
+    "tsconfig": "workspace:*"
+  }
+}
