@@ -1,13 +1,13 @@
 #!/bin/sh
 eval $(grep '^CM_LOCAL_API' ./.env) && \
-eval $(grep '^CM_LOCAL_API_SUPABASE_SECRET' ./.env) && \
+eval $(grep '^CM_LOCAL_API_KEY' ./.env) && \
 
 echo "npx genql --endpoint $CM_LOCAL_API \
 --output ./generated \
--H 'content-type: application/json' \
--H 'apiKey: $CM_LOCAL_API_SUPABASE_SECRET'" && \
+-H 'Content-Type: application/json' \
+-H 'apiKey: $CM_LOCAL_API_KEY'" && \
 
 npx genql --endpoint $CM_LOCAL_API \
 --output ./generated \
--H 'content-type: application/json' \
--H 'apiKey: $CM_LOCAL_API_SUPABASE_SECRET'
+-H 'Content-Type: application/json' \
+-H 'apiKey: $CM_LOCAL_API_KEY'
