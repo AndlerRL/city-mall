@@ -3,6 +3,13 @@
   "private": true,
   "workspaces": [
     "packages/*",
-    "apps/*"
-  ]
+    "apps/*",
+    "hardhat"
+  ],
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.13.1",
+    "hardhat": "^2.22.5"
+  }
 }

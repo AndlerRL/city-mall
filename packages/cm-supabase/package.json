@@ -2,8 +2,17 @@
   "name": "cm-supabase",
   "version": "0.0.1",
   "description": "A simple example of using Supabase with Cloudflare Workers",
-  "types": "index.ts",
+  "main": "./index.ts",
+  "types": "./index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "types": "supabase gen types typescript --project-id jvpdyxpjpodxsuvhufpw > src/supa.types.ts",
+    "schemas": "supabase-to-zod --input src/supa.types.ts --output src/supa.schemas.ts"
+  },
+  "author": "andler",
+  "license": "ISC",
+  "devDependencies": {
+    "tsconfig": "workspace:*",
+    "supabase-to-zod": "^1.0.5"
   }
 }
