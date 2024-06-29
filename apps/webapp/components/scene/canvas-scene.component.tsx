@@ -4,7 +4,7 @@ import { Bounds, Box, OrbitControls, Plane, Sky, TransformControls, useBounds } 
 import { Canvas, extend, MeshProps, useFrame, useThree } from '@react-three/fiber'
 import React, { forwardRef, useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
-import { Bulbs } from '~/components/scene/bulb.component'
+import { Bulbs, StoreBoxes } from '~/components/scene/bulb.component'
 
 extend({ OrbitControls, TransformControls, Box })
 
@@ -96,7 +96,7 @@ const Player = forwardRef(({ position }: { position: any }, ref) => {
   return (
     <Box ref={ref} position={position} args={[0.47, 1.73, 0.32]} castShadow>
       <meshPhysicalMaterial
-        color="blue"
+        color="#6060ff"
         clearcoat={0.5}
         clearcoatRoughness={0.5}
       />
@@ -139,6 +139,25 @@ function Scene({ playerRef }: { playerRef: any }) {
           [-10, 3, 10],
           [-20, 3, 20],
         ]} />
+        <StoreBoxes positions={[
+          [0, -0.5, 0],
+          [10, -0.5, 0],
+          [20, -0.5, 0],
+          [0, -0.5, 10],
+          [0, -0.5, 20],
+          [-10, -0.5, 0],
+          [-20, -0.5, 0],
+          [0, -0.5, -10],
+          [0, -0.5, -20],
+          [-10, -0.5, -10],
+          [-20, -0.5, -20],
+          [10, -0.5, -10],
+          [20, -0.5, -20],
+          [10, -0.5, 10],
+          [20, -0.5, 20],
+          [-10, -0.5, 10],
+          [-20, -0.5, 20],
+        ]} />
         <Plane
           args={[WORLD_LIMITS * 2, WORLD_LIMITS * 2]}
           position={[0, -0.25, 0]}
@@ -147,23 +166,23 @@ function Scene({ playerRef }: { playerRef: any }) {
           castShadow
         >
           <meshStandardMaterial
-            color="green"
+            color="lightgreen"
             clearcoat={1}
             clearcoatRoughness={1}
-            roughness={1}
-            reflectivity={0.1}
+            roughness={0.5}
+            reflectivity={0.4}
             flatShading
-            refractionRatio={0.1}
+            refractionRatio={0.3}
           />
         </Plane>
         {
           [-WORLD_LIMITS, WORLD_LIMITS].map((pos) => (
             <React.Fragment key={pos}>
-              <Box position={[pos, 4.5, 0]} args={[0.3, 10, WORLD_LIMITS * 2]} castShadow>
-                <meshPhysicalMaterial color="gray" clipShadows />
+              <Box position={[pos, 4.5, 0]} args={[0.3, 10, WORLD_LIMITS * 2]} castShadow receiveShadow>
+                <meshPhysicalMaterial color="lightgray" />
               </Box>
-              <Box position={[0, 4.5, pos]} args={[WORLD_LIMITS * 2, 10, 0.3]} castShadow>
-                <meshPhysicalMaterial color="gray" clipShadows />
+              <Box position={[0, 4.5, pos]} args={[WORLD_LIMITS * 2, 10, 0.3]} castShadow receiveShadow>
+                <meshPhysicalMaterial color="lightgray" />
               </Box>
             </React.Fragment>
           ))
@@ -204,10 +223,10 @@ export function CanvasScene() {
           target={playerRef.current?.position || new THREE.Vector3(0, 1.5, 4)}
           maxZoom={2}
           minZoom={6}
-          minPolarAngle={Math.PI / 6} // Limit how low the camera can go
+          minPolarAngle={Math.PI / 4} // Limit how low the camera can go
           maxPolarAngle={Math.PI / 2} // Limit how high the camera can go
           enableDamping
-          dampingFactor={0.25}
+          dampingFactor={0.1}
           rotateSpeed={0.5}
           enablePan={false}
           enableZoom={false}

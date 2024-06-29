@@ -1,4 +1,5 @@
-import { Instance, Instances } from '@react-three/drei'
+import { Instance, Instances } from '@react-three/drei';
+import * as THREE from 'three';
 
 export function Bulbs({ positions }: { positions: number[][] }) {
   return (
@@ -44,4 +45,56 @@ export function Bulbs({ positions }: { positions: number[][] }) {
       </Instances>
     </>
   )
+}
+
+export function StoreBoxes({ positions }: { positions: number[][] }) {
+  return (
+    <>
+      {positions.map((position, index) => (
+        <StoreBox key={`box-${index}`} position={position} />
+      ))}
+    </>
+  );
+}
+
+function StoreBox({ position }: { position: number[] }) {
+  const thickness = 0.2; // Thickness of the walls
+  const width = 5;
+  const height = 4.5;
+  const depth = 10;
+
+  return (
+    <group position={new THREE.Vector3(...position)}>
+      {/* Front Wall */}
+      <mesh position={[0, height / 2, depth / 2 - thickness / 2]} receiveShadow castShadow>
+        <boxGeometry args={[width, height, thickness]} />
+        <meshPhysicalMaterial color="#333" />
+      </mesh>
+      {/* Back Wall */}
+      <mesh position={[0, height / 2, -depth / 2 + thickness / 2]} receiveShadow castShadow>
+        <boxGeometry args={[width, height, thickness]} />
+        <meshPhysicalMaterial color="#333" />
+      </mesh>
+      {/* Left Wall */}
+      <mesh position={[-width / 2 + thickness / 2, height / 2, 0]} receiveShadow castShadow>
+        <boxGeometry args={[thickness, height, depth]} />
+        <meshPhysicalMaterial color="#333" />
+      </mesh>
+      {/* Right Wall */}
+      <mesh position={[width / 2 - thickness / 2, height / 2, 0]} receiveShadow castShadow>
+        <boxGeometry args={[thickness, height, depth]} />
+        <meshPhysicalMaterial color="#333" />
+      </mesh>
+      {/* Top Wall */}
+      <mesh position={[0, height - thickness / 2, 0]} receiveShadow castShadow>
+        <boxGeometry args={[width, thickness, depth]} />
+        <meshPhysicalMaterial color="#333" />
+      </mesh>
+      {/* Bottom Wall */}
+      <mesh position={[0, thickness / 2, 0]} receiveShadow castShadow>
+        <boxGeometry args={[width, thickness, depth]} />
+        <meshPhysicalMaterial color="#333" />
+      </mesh>
+    </group>
+  );
 }
